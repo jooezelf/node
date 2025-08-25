@@ -41,7 +41,7 @@ class Student {
   }
 }
 
-let std3 = new Student(6, "김가을", 164);
+let std3 = new Student(6, "김가을", 164); // 인스턴스 생성
 let std4 = new Student(4, "이현서", 165);
 
 
