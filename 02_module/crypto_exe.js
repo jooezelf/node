@@ -1,48 +1,46 @@
+// crypto_exe.js
 const crypto = require("crypto");
-let pass =
-  crypto.createHash('sha512').update("test1234").digest("base64");
+let pass = crypto.createHash("sha512").update("test1234").digest("base64");
+// test1234 => dfkldfjkdlsa;fjkdslafjsdkalfsdkl
+// test1234 => (salt) djfkladsfjkdsalfjksdlafjlasdkf
+//                    sdfasdkflasdfdjskalfdjskalfjdksla
+console.log(pass);
 
-// console.log(pass);
-
-const createSalt = () => { // 평문을 변경하는 암호화
-  return new Promise((resolve, reject) => { // 실패했을 때 받는 함수 : reject
-    crypto.randomBytes(64, (err, buf) => { // 랜덤바이트값이 정상적으로 생성되면
+// salt값을 생성하는 함수.
+// random 값이 만들어짐.
+const createSalt = () => {
+  return new Promise((resolve, reject) => {
+    crypto.randomBytes(64, (err, buf) => {
       if (err) {
-        //실패
+        // 실패.
         reject(err);
       }
-      // 성공
-      resolve(buf.toString("base64")); // 성공하면 buf 메소드 호출, 실패하면 catch 메소드 호출
+      // 성공.
+      resolve(buf.toString("base64"));
     });
   });
 };
 
-// createSalt(); //함수 호출
-// salt 값을 활용하여 평문을 암호화문으로 변경하는 방법
-const createCryptoPassword = async (trPw) => { // 비동기방식으로 반환
-  let salt = await createSalt(); // promise 객체로 반환
+// createSalt(); // 함수호출.
+// salt 값을 활용해서 평문 -> 암화화문 변경.
+const createCryptoPassword = async (trPw) => {
+  let salt = await createSalt();
   console.log(salt);
   salt =
-    "Fto+cArz5YA5xXC01it8ifTtF351UXXmFIDCdXnHgLi1Aj/gHEL7SPlIC6KuY0SgWLuqx4UkO90KhCTZ+U5HCA=="
+    "K0d4RTk5wSIeWqJzz0EYEXyI4z9/rdLyneRq+UWnyrMtXtl7ZlQtS7/AVXVqkhofly3Vhz00PAV0/2tM0cSMpw==";
   pw =
-    "dluhBtv3+UA3HFGpex3hqKq7MOV7UNAXTkne+wZIn00ZO0yS1cu3iiMXOjoMN7ZF+e/RuDc0tgoccrnYpT/SlA=="
+    "rL0EgIarnV32V0Y8YCwqHiTnjiwwI4ync73owLSVppFLTRA9/nzIwM2YTSxwIPw73LUVhWLusWVfIqA6EPGlvA==";
   crypto.pbkdf2(trPw, salt, 100000, 64, "sha512", (err, buf) => {
     if (err) {
       console.log("err=>", err);
     }
-    console.log(buf.toString("base64"));
+    // console.log(buf.toString("base64"));
     let crPw = buf.toString("base64");
     if (pw == crPw) {
-      console.log('비밀번호가 동일합니다.');
+      console.log("비밀번호가 동일함.");
     } else {
-      console.log('비밀번호가 틀렸습니다.');
+      console.log("비밀번호를 확인하세요");
     }
   });
 };
 createCryptoPassword("test1234");
-
-// promise
-// .then(result => {
-// console.log(result);
-// })
-// .catch((err) => console.error(err));

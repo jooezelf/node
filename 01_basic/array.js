@@ -1,38 +1,44 @@
 // [].sort()
 
-let fruits = ['cherry', 'strawberry', 'banana'];
+let fruits = ["apple", "cherry", "banana"];
 
 fruits.sort();
 
-fruits.forEach(fruit => {
+fruits.forEach((fruit) => {
   console.log(fruit);
-})
+});
 
-let numbers = [21, 22, 21, 18, 23, 21];
+let numbers = [1, 10, 100, 2, 12, 44];
 numbers.sort(function (a, b) {
-  if (a < b) {
-    return 1; // 위치를 변경하려면 : 양의값
+  if (b > a) {
+    return 1; // 위치를 변경: 양의값.
   } else {
-    return -1; // 위치를 유지하려면 : 음의값
+    return -1; // 위치를 유지: 음의값.
   }
 });
-
-numbers.forEach((numbers) => {
-  //console.log(numbers);
+numbers.forEach((number) => {
+  console.log(number);
 });
 
-//filter()
+// filter()
 [
-  {name: "Jang", point: 90},
-  {name: "Kim", point: 10},
-  {name: "Rei", point: 80},
-  {name: "lee", point: 370},
+  { name: "Hong", point: 10 },
+  { name: "Kim", point: 23 },
+  { name: "Park", point: 46 },
+  { name: "Choi", point: 17 },
+  { name: "Hwang", point: 56 },
 ]
-.filter((elem, idx, ary) => {
-  //console.log(elem);
-  if (elem > 21) { // 21보다 큰 값을 새로운 생성
-    return true;
-  }
-}).forEach(elem => {
-  console.log("이름: " + elem.name); // 이름
-})
+  .filter((elem, idx, ary) => {
+    // console.log(elem);
+    if (elem.point > 30) {
+      // 30보다 큰값을 새로운 생성.
+      return true;
+    }
+  })
+  .forEach((elem) => {
+    console.log("이름: " + elem.name); // 이름:Park, 이름:Hwang // 46, 56
+  });
+
+// map (mapping)
+// A -> A'
+// {name, age, point} => {name, point}

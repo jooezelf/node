@@ -1,30 +1,34 @@
-console.log('hello world we are ive');
-console.log('hello %s', 'world we are ive')
-
-const world = 'world';
-console.log(`hello ${world}`);
-
-console.error(new Error('에러 메세지 출력'));
-
-const arr = [{
-    name: 'Jang WonYoung',
-    email: 'starship-ent@daum.net'
-  },
-  {
-    name: 'Naoi Rei',
-    email: 'starship-ent@daum.net'
-  }, {
-    name: 'Kim Gaeul',
-    email: 'starship-ent@daum.net'
-  }, {
-    name: 'Lee HyeonSeo',
-    email: 'starship-ent@daum.net'
-  }, {
-    name: 'Liz',
-    email: 'starship-ent@daum.net'
-  }, {
-    name: 'An YuJin',
-    email: 'starship-ent@daum.net'
-  }
+const arr = [
+  { name: "John Doe", email: "john@email.com" },
+  { name: "Jeremy Go", email: "jeremy@email.com" },
 ];
+
 console.table(arr);
+
+const obj = {
+  students: {
+    grade1: {
+      classA: {
+        student1: { name: "Alice", age: 7 },
+        student2: { name: "Bob", age: 6 },
+      },
+      classB: {
+        student1: { name: "Charlie", age: 7 },
+        student2: { name: "Daisy", age: 6 },
+      },
+    },
+    grade2: {
+      classA: {
+        student1: { name: "Eve", age: 8 },
+        student2: { name: "Frank", age: 8 },
+      },
+      classB: {
+        student1: { name: "Grace", age: 8 },
+        student2: { name: "Henry", age: 9 },
+      },
+    },
+    teachers: ["John Doe", "Jeremy Go"],
+  },
+};
+
+console.dir(obj, { depth: 4, colors: true });
